@@ -5,13 +5,31 @@ def maximum_value(maximum_weight, items):
 
     Parameters
     ----------
-    maximum_weight : dict.
+    maximum_weight : list of dicts.
     items : int
        
     Returns
     -------
     int
-    '''        
+    '''
+    
+    
+    #Exception if object is to heavy, and cannot be robbed 
+    for idx, i in enumerate(items):
+        try:
+            if i["weight"]>maximum_weight:
+                raise Exception
+        except:
+            items.remove(i)
+            print("To heavy item, do not consider it")
+   
+    #Exception if list is empty to not execute unnecessary lines, which return 0 anyway
+    try:
+        items[0]
+    except:
+        print("Nothing to rob! No items")
+        return 0
+                            
     w= [i["weight"] for i in items] #Weights (stored in array w)
     v= [i["value"] for i in items] #Values (stored in array v)
     #The array "v" and array "w" are assumed to store all relevant values starting at index 1.
